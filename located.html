@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Estrela | Located</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="https://db.onlinewebfonts.com/c/4b19a85c501674eefea5b25f9ede2702?family=GaramondPremrPro-Capt" rel="stylesheet" />
+
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div id="header-placeholder"></div>
+
+  <div class="container">
+    <!-- TEXT LEFT -->
+    <div class="box1">
+      <p class="located-text"><strong>LOCATED</strong></p>
+      <p class="located-text">
+        Casa Estrela is situated in the village of Molelos (google maps link), nestled in the district of Viseu, within the Beira Alta province in Portugal's Centro region. Molelos spans 14.83 km² and is home to 2,225 residents, according to the 2021 census.
+      </p>
+      <p class="located-text">
+        We are 159km from Porto and 269km from Lisbon if you come by plane to any of those cities.
+      </p>
+      <br>
+      <p class="located-text"><strong>How to get to Casa Estrela</strong></p>
+      <p class="located-text"><strong>By Train</strong></p>
+      <p class="located-text">
+        You can find the train schedule at <a href="https://www.cp.pt/passageiros/pt" target="_blank" rel="noopener noreferrer">CP.pt</a>
+        <br>
+        <em>* Note that there are no direct trains to Molelos; you'll get to Santa Comba Dão, which is about 20 minutes by car from the house. Right now, the train station from Santa Comba Dão is not working due to construction work so a bus will get you to the station.</em>
+      </p>
+      <br>
+      <p class="located-text"><strong>By Bus</strong></p>
+      <p class="located-text">
+        You can check the buses from:
+        <br><a href="https://rede-expressos.pt/pt" target="_blank" rel="noopener noreferrer">Rede Expressos</a>
+        <br><a href="https://www.flixbus.pt/" target="_blank" rel="noopener noreferrer">Flixbus</a>
+        <br><br>
+        If you come by bus, there are two options:
+        You can take a bus to Tondela, the nearest city, which is about a 10-minute drive from the house, and we'll be happy to pick you up. Alternatively, you can take a bus to Viseu, located 30 minutes away by car. From there, you'll need to take a taxi or another bus to Tondela, as we are unable to offer pickups from Viseu.
+      </p>
+      <br>
+      <p class="located-text"><strong>Taxi services:</strong></p>
+      <p class="located-text">
+        There are taxi services from Viseu in case you get the bus there.
+        <br><a href="https://www.cm-viseu.pt/pt/contatos/taxis/" target="_blank" rel="noopener noreferrer">Viseu Taxis</a>
+      </p>
+      <br>
+      <p class="located-text"><strong>By Car</strong></p>
+      <p class="located-text">
+        You can plan your route to Casa Estrela at
+        <br><a href="https://www.viamichelin.com" target="_blank" rel="noopener noreferrer">ViaMichelin</a>
+        <br>
+        Feel free to <a href="mailto:acasaestrela@gmail.com" target="_blank"><strong><u>ask us</u></strong></a> if you have any doubt.
+      </p>
+    </div>
+
+    <!-- Vertical line separator -->
+    <div class="separator"></div>
+
+    <!-- ARCHIVE VIDEOS/IMAGES RIGHT -->
+    <div class="box2">
+      <video class="located-video" src="https://attachments.are.na/32848925/8c146cdb6fca39b0ff0dc8df57cbc52a.mp4?1733745237" playsinline loop muted autoplay></video>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/scripts/clock.js"></script>
+  <script src="/scripts/language.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#header-placeholder').load('/header.html');
+      $('#footer-placeholder').load('/footer.html', function() {
+        updateClock();
+        setInterval(updateClock, 1000);
+      });
+      loadLanguage(currentLanguage);
+    });
+  </script>
+</body>
+</html>

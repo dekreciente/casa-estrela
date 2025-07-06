@@ -67,22 +67,19 @@
 
 
 
-<!-- Placeholder for Footer -->
-    <div id="footer-placeholder"></div>
+ <div id="footer-placeholder"></div>
 
-<!-- Include the jQuery to load the footer dynamically -->
-    <script>
-        $(document).ready(function() {
-            // Load the footer content dynamically
-            $('#footer-placeholder').load('../html/footer.html', function() {
-                // The footer is loaded, re-initialize the clock
-                updateClock();
-                setInterval(updateClock, 1000);
-            });
-        });
-    </script>
+  <script src="/scripts/clock.js"></script>
 
-    <!-- Include clock.js -->
-    <script src="../scripts/clock.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#header-placeholder').load('/header.html');
+      $('#footer-placeholder').load('/footer.html', function() {
+        updateClock();
+        setInterval(updateClock, 1000);
+      });
+      loadLanguage(currentLanguage);
+    });
+  </script>
 </body>
 </html>
