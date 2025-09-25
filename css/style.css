@@ -1,5 +1,5 @@
 /* General styles */
-/* NOT SURE WHICH FOUND SHOULD I UUUUUUUUSEEEEEE */
+/* NOT SURE WHICH FONT SHOULD I UUUUUUUUSEEEEEE */
 /* I NEED TO ORGANIZE ALL THE RESPONSIVE DESIGN FROM THE SITE UNIFY IT, MAKE JUST LAPTOP, LARGER SCREEN AND SMARTPHONES */
 
 *,
@@ -15,6 +15,15 @@
     scrollbar-width: none; /* hide scrollbar */
 }
 
+@font-face {
+  font-family: 'CirrusCumulus';
+  src: url('/fonts/CirrusCumulus.woff2') format('woff2'),
+       url('/fonts/CirrusCumulus.woff') format('woff');
+  font-weight: 100 900;   /* adjust if not variable font */
+  font-style: normal;
+  font-display: swap;
+}
+
 
 
 html, body {
@@ -24,12 +33,13 @@ html, body {
 html {
     background: #fffff2; /*should we use vibran colors for the different pages but keep header and footer with that yellow?*/
     color: #3f3e3e;
-    font-family: "aktiv-grotesk", sans-serif !important; /*should I use garamond captions?*/
+      font-family: 'CirrusCumulus', sans-serif;
      font-kerning: normal;
      font-feature-settings: normal;
   font-variation-settings: normal;
   -webkit-text-size-adjust: 100%;
   line-height: 1.5 !important;
+  
 }
 
 body {
@@ -90,6 +100,7 @@ u {
     color: black; 
     cursor: pointer;
     transition: color 0.3s ease; 
+    font-family: 'CirrusCumulus', sans-serif;
 }
 
 /* Hover Effect */
@@ -157,6 +168,7 @@ main {
     box-sizing: border-box;
     flex-direction: column; /* Stacking vertically */
     height: auto;
+    
 }
 
 
@@ -419,8 +431,7 @@ td {
     margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
   }
 
-/* Located Page WIP I NEED TO ADD THE VIDEOS TO THE RIGHT*/
-/* I STILL NEED TO MAKE THE PAGE RESPONSIVE RIGHT NOW ITS NOT WORKING SUPER FINE*/
+/* Located Page */
 .container {
     display: flex;           /* Flexbox to align items side by side */
     height: 100vh;           /* Full height of the viewport */
@@ -532,85 +543,90 @@ td {
 
 
 /* Projects Page A grid With Boxes for Each project */
+/* Accessibility helper for screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* Responsive projects grid */
 .projects-grid {
-    display: grid;
-    background-color: #fffff2; /* Background color */
-    padding: 0.2px; /* Padding around the grid */
-    grid-template-columns: repeat(auto-fit, 20%);
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-    padding-left: 6rem;
-    padding-right: 6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(160px, 35vw, 220px), 1fr));
+  gap: clamp(8px, 2vw, 20px);
+  background-color: #fffff2;
+  padding: clamp(16px, 6vw, 96px);
+  padding-top: clamp(32px, 8vw, 96px);
+  padding-bottom: clamp(32px, 8vw, 96px);
+  margin-top: 60px;
 }
 
-/* Individual Box */
+/* Individual tile */
 .grid-item {
-    background-color: #f8f2f2; /* Change to your desired box color */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    aspect-ratio: 1; /* Keep boxes square */
-    outline: 1px solid black; /* Use outline instead of border */
-    overflow: hidden; /* Keep content inside box boundaries */
+  position: relative;
+  background-color: rgba(178, 255, 35, 0.46);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  outline: 1px solid #000;
+  overflow: hidden;
 }
-  
+
+.grid-item a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;   /* optional if you want full clickable area */
+  height: 100%;  /* optional if you want full clickable area */
+}
+
+/* Images */
 .projects-img {
-   width: 50%;
-   opacity: 0.9; /* Slight fade */
-  }
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.95;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
 
-
-/* Hover Effect for Images */
-/* Not shure if I should use a hover */
+/* Hover effect */
+@media (hover: hover) and (pointer: fine) {
   .grid-item:hover .projects-img {
+    transform: scale(1.02);
+    opacity: 1;
     cursor: pointer;
   }
-
-
-
-/* Hide the message by default */
-.mobile-warning {
-    display: none;  
-    position: fixed;  
-    top: 45%;  
-    left: 50%;  
-    transform: translate(-60%, -50%);  
-    display: flex;  
-    align-items: center;  
-    justify-content: center;  
-    text-align: left;
-    font-size: 40px;
-    line-height: 46px;
-    padding: 20px;
-    background-color: yellowgreen; 
-    border: 1px solid black;
-    border-radius: 12px;
-    margin: 20px;
-    z-index: 9999;  
 }
 
-.mobile-warning,
-.projects-grid {
-    display: none;
+/* Text-only tile */
+.grid-item--text {
+  padding: 1rem;
 }
-/* Show the message on small screens */
-@media (max-width: 768px) {
-    .mobile-warning {
-        display: flex;  /* Mostrar mensaje phone */
-        position: fixed;
-    }
-
-    .projects-grid {
-        display: none;  /* Esconde el grid para phone */
-    }
+.grid-text {
+  text-align: center;
+  line-height: 1.2;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
 }
 
-/* Aparece el grid para pantallas normales */
-@media (min-width: 769px) {
-    .projects-grid {
-        display: grid; /* Show the project grid on larger screens */
-    }
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .projects-img {
+    transition: none;
+  }
 }
+
+/* Larger screens: slightly bigger tiles */
+@media (min-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
 
 
 
@@ -622,5 +638,259 @@ td {
     height: 100%;
   }
 
+  
+
+
+/* === Projects (Two-Column Page) ========================================= */
+
+.projects-page {
+  width: 100%;
+  background: #fffff2;
+  /* keep content clear of fixed nav/footer */
+  padding: 6rem;
+  padding-top: 6rem; /* below fixed nav */
+  padding-bottom: 6rem; /* above fixed footer */
+}
+
+.project {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* left=text, right=media */
+  gap: 2rem;
+  align-items: start;
+  border-top: 1px solid black;     /* subtle separation between projects */
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+
+/* Left column (text) */
+.project-text {
+  color: #3f3e3e;
+}
+
+.project-text h2 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.project-text .meta {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+.project-text p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* Right column (media) */
+.project-media {
+  width: 100%;
+}
+
+.project-media img,
+.project-media video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid black;     /* matches site’s line language */
+  border-radius: 8px;          /* matches rounded elements used elsewhere */
+  /* keep content inside and crisp */
+  object-fit: cover;
+}
+
+/* Optional: maintain aspect for hero media */
+.project-media .media-16x9 {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+.project-media .media-16x9 > img,
+.project-media .media-16x9 > video,
+.project-media .media-16x9 > iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+
+/* Spacing helpers for stacked media items */
+.project-media figure {
+  margin: 0 0 1rem 0;
+}
+.project-media figcaption {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-top: 0.25rem;
+}
+
+/* ===== Responsive ======================================================= */
+
+/* Laptop / tablets: keep two columns but tighten spacing */
+@media (max-width: 1224px) {
+  .projects-page {
+    padding: 2rem;
+    padding-top: 6rem;  /* keep under fixed nav */
+    padding-bottom: 6rem;
+  }
+  .project {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .project-text p { max-width: 70ch; }
+}
+
+/* Phones: stack columns, full-width media, readable text */
+@media (max-width: 768px) {
+  .projects-page {
+    padding: 2rem;
+    padding-top: 7.5rem; /* matches your mobile main top spacing */
+    padding-bottom: 6rem;
+  }
+  .project {
+    grid-template-columns: 1fr; /* stack */
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+  }
+  .project-text h2 { font-size: 1.25rem; }
+  .project-text p { font-size: 1.0rem; max-width: 100%; }
+}
+
+/* Ultra-wide screens: breathe a bit more */
+@media screen and (min-width: 1920px) {
+  .project-text h2 { font-size: 2rem; }
+  .project-text p { font-size: 1.5rem; }
+}
+
+
+  /* Template Projects Page */
+/* === Projects (Two-Column Page) ========================================= */
+/* Located Page */
+
+@font-face {
+    font-family: 'CirrusCumulus';
+    src: url('/fonts/CirrusCumulus.woff') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+.container_projects {
+    display: flex;           /* Flexbox to align items side by side */
+    height: 100vh;           /* Full height of the viewport */
+    flex-direction: row; 
+    background-color: rgba(178, 255, 35, 0.46);    /* Default: horizontal layout */
+    font-family: 'CirrusCumulus', sans-serif; /* Fallback added */
+}
+
+/* Box1 - Left Column */
+.box1_projects {
+    flex: 1;                 /* Takes available space */
+    padding: 6rem;
+    overflow-y: auto;        /* Enable vertical scrolling for this box */
+    height: 100vh;          /* Full height of the viewport */
+}
+
+/* Box2 - Right Column */
+.box2_projects {
+    flex: 1;                 /* Takes available space */
+    padding: 6rem;
+    overflow-y: auto;        /* Enable vertical scrolling for this box */
+    height: 100vh;           /* Full height of the viewport */
+}
+
+/* Vertical separator line between box1 and box2 */
+.separator_projects {
+    width: 1px;              /* Thin vertical line */
+    background-color: black; /* Color of the line */
+    height: 100vh;           /* Same height as the boxes */
+}
+
+/* Las mismas propiedades para la pag de Casa Estrela */
+.located-text_projects {
+    margin-bottom: 12px;
+    margin-left: 0; /* Remove or adjust the negative margin */
+    font-size: 1.4rem;
+    line-height: 24px;
+    margin-top: 0;
+    width: 100%;
+}
+
+
+.located-video_projects {
+    width: 100%; /* Make video responsive */
+    height: 100%;
+    object-fit: cover; 
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px yellowgreen;
+}
+
+/* Located Page + Casa Estrela Responsive */
+@media (max-width: 768px) {
+    /* Stack boxes vertically and adjust padding */
+    .container_projects {
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+        height: auto; 
+    }
+
+    /* Adjust box padding and width */
+    .box1_projects, .box2_projects {
+        padding: 2rem; /* Reduce padding for smaller screens */
+        width: 100%; /* Make boxes take full width */
+        gap: -10px;
+    }
+
+    .box1_projects {
+        margin-top: 50px;
+    }
+
+    /* Linea separacion horizontal */
+    .separator_projects {
+        width: 100%;              
+        height: 1px;              
+        background-color: black;  
+        margin: 2rem 0;           
+    }
+    
+
+    /* Adjust text alignment and font size */
+    .located-text_projects {
+        margin-left: 0; /* Remove left margin */ 
+        font-size: 0.9rem; 
+        text-align: left;
+    }
+
+    /* Ensure video scales properly */
+    .located-video_projects {
+        width: 100%;
+        height: auto;
+        margin-bottom: 100px;
+    }
+
+     /* Imagen del about pero en un futuro puede ser video*/
+    .about-images_projects {
+        width: 100%;
+        height: auto;
+        margin-bottom: 100px;
+    }
+
+    /* Adjust button styles */
+    .button_projects {
+        width: 100%; /* Make buttons full width */
+        text-align: center;
+        padding: 1rem; /* Adjust padding */
+    }
+}
 
 
